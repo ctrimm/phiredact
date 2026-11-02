@@ -4,7 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>phiredact — Redact the document, on the device it lives on</title>
+<meta name="description" content="phiredact redacts PII and PHI on the device it lives on: an 11 MB on-device model, a review-first workflow, and SDKs, a Mac app and a browser extension. Nothing is uploaded, ever.">
 <link rel="stylesheet" href="assets/style.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
 <body>
 
@@ -16,7 +18,7 @@
   </div>
 </div></nav>
 
-<div class="wrap">
+<main class="wrap">
   <div class="hero">
     <div class="kicker">On-device redaction for documents &amp; images</div>
     <h1>Redact the document,<br>not just the <span class="blk">text</span>.</h1>
@@ -29,7 +31,7 @@
     </div>
 
     <div class="doc-shot">
-      <img src="assets/license-redacted.png" alt="Sample Pennsylvania license after review and burn-in redaction">
+      <picture><source srcset="assets/license-redacted.webp" type="image/webp"><img src="assets/license-redacted.png" alt="Sample Pennsylvania license after review and burn-in redaction" width="1011" height="637" fetchpriority="high"></picture>
       <div class="caption">
         <span class="fig">FIG. 1</span>
         <span>A sample driver&rsquo;s license after redaction. Each black bar was proposed by the model, inspected by a person — peek at what sits behind any box before you commit — and then burned into the pixels. There is no layer underneath to peel back, and the exported file carries no metadata.</span>
@@ -37,9 +39,9 @@
     </div>
 
     <div class="rules">
-      <div class="rule"><div class="n">No. 1</div><h3>Found locally</h3><p>OCR, face detection and the redaction model all run on the device holding the document. A tool for sensitive files cannot itself be a place files are sent.</p></div>
-      <div class="rule"><div class="n">No. 2</div><h3>Reviewed by a person</h3><p>Automatic burn-in exists, but it is not the default. The review screen is the product: accept, reject, peek behind a box, or draw one the model missed.</p></div>
-      <div class="rule"><div class="n">No. 3</div><h3>Burned in, not covered</h3><p>A black rectangle drawn over a PDF is not a redaction — the text survives beneath it. phi-redact removes the content and strips the metadata.</p></div>
+      <div class="rule"><div class="n">No. 1</div><h2>Found locally</h2><p>OCR, face detection and the redaction model all run on the device holding the document. A tool for sensitive files cannot itself be a place files are sent.</p></div>
+      <div class="rule"><div class="n">No. 2</div><h2>Reviewed by a person</h2><p>Automatic burn-in exists, but it is not the default. The review screen is the product: accept, reject, peek behind a box, or draw one the model missed.</p></div>
+      <div class="rule"><div class="n">No. 3</div><h2>Burned in, not covered</h2><p>A black rectangle drawn over a PDF is not a redaction — the text survives beneath it. phi-redact removes the content and strips the metadata.</p></div>
     </div>
   </div>
 
@@ -48,6 +50,7 @@
     <p class="sec-sub">Every figure below comes from the public benchmark harness in the SDK repository. Configurations and corpus sizes are stated beside each result; the full data sheet is on the <a href="benchmarks/" style="border-bottom:1px solid var(--red)">benchmarks page</a>.</p>
 
     <div class="t-head"><h3>Table 1 — Against the incumbent</h3><div class="sc">Head-to-head · shared corpus · same harness</div></div>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Table 1, phiredact versus Microsoft Presidio — scroll horizontally for all columns">
     <table class="ptable num">
       <tr><th>Measure</th><th>phiredact</th><th>Microsoft Presidio</th><th>Conditions</th></tr>
       <tr><td>Clinical strict F1</td><td class="phi">0.948</td><td>0.466</td><td class="cond">Presidio default configuration</td></tr>
@@ -56,6 +59,7 @@
       <tr><td>Installed footprint</td><td class="phi">11.3 MB</td><td>~840 MB</td><td class="cond">Model + runtime, default install</td></tr>
       <tr><td>Full-value recall, golden set</td><td class="phi">~0.98</td><td>—</td><td class="cond">164-note golden corpus</td></tr>
     </table>
+    </div>
     <p class="note-line"><b>Read fairly:</b> Presidio is a general framework — 30+ entity types, many languages, images and structured data. phiredact is a specialist: English clinical and case text, 32 entity types, one job. Where the generalist wins, the full comparison says so; it is published with the harness.</p>
 
     <div class="cols2">
@@ -118,7 +122,7 @@
 
     <div class="note"><b>A note on what this is not.</b> phi-redact is a detection tool that assists de-identification. It is not a certification, and its output is not expert-certified de-identified data. On documents that matter, the review step is not a courtesy — it is the control.</div>
   </section>
-</div>
+</main>
 
 <footer><div class="wrap foot-in">
   <div class="brand">phiredact</div>
