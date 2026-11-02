@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>phiredact — The Chrome extension</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<nav><div class="wrap nav-in">
+  <a class="brand" href="../">phi<i>redact</i></a>
+  <div class="nav-links">
+    <a href="../">The model</a><a href="../mac/">Documents</a><a href="../benchmarks/">Benchmarks</a><a href="../demo/">Demo</a>
+    <a class="gh" href="https://github.com/ctrimm/phi-redact-sdk">GitHub &#8599;</a>
+  </div>
+</div></nav>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="kicker">The Chrome extension</div>
+    <h1 style="font-size:56px">For the words in your browser.</h1>
+    <p class="lede">Most text leaves through a browser tab — pasted into a form, a ticket, a chat with an AI. The extension redacts it before it goes: a page you are reading, a passage you are about to paste, a file you are about to attach. <strong>The redaction happens in the tab; there is no server round-trip.</strong></p>
+    <div class="hero-meta">
+      <span><b>Pages, pastes &amp; files</b></span>
+      <span><b>Review bucket</b> for borderline findings</span>
+      <span><b>0</b> server round-trips</span>
+      <span>Open source</span>
+    </div>
+
+    <div class="browser-mock">
+      <div class="bm-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">case-notes.internal / client / summary</span></div>
+      <div class="bm-body">
+        <div class="bm-page">
+          <div class="pt">Case summary — household of four</div>
+          Client <span class="bar">Marisol Vega</span>, DOB <span class="bar">04/27/1990</span>, can be reached at <span class="bar">(216) 555-0147</span>. Benefits letter mailed to <span class="bar">932 Ansel Rd, Cleveland, OH 44108</span> on <span class="bar">10/03/2026</span>. Case number <span class="bar">OH-552-9017</span>. Two findings below are borderline and are waiting in the review bucket rather than being decided for you.
+        </div>
+        <div class="bm-bucket">
+          <div class="lab">Review bucket — 2 waiting</div>
+          <div class="bucket-item"><div class="t">Possible name · low confidence</div>&ldquo;Ansel&rdquo; — a street name that may be a person<div class="acts"><span class="rm">Remove</span><span>Keep</span></div></div>
+          <div class="bucket-item"><div class="t">Possible date · low confidence</div>&ldquo;04/27&rdquo; in a grocery list further down the page<div class="acts"><span class="rm">Remove</span><span>Keep</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="caption">
+      <span class="fig">FIG. 1</span>
+      <span>A page, redacted in place. Findings the model is sure of are replaced at once; the ones it is unsure of are not guessed at — they wait in the review bucket, shown with the reason, until you decide. Nothing on the page was sent anywhere to make this happen.</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-title"><h2>How it works</h2><div class="rule-line"></div><div class="tag">Three ways in, one way out</div></div>
+    <div class="toc">
+      <div class="row"><div class="no">01</div><h3>Pick the text</h3><p>Redact the page you are on, paste text into the extension, or drop in a file. The same 11 MB model and rules engine from the SDKs do the finding.</p><span class="go">Step one</span></div>
+      <div class="row"><div class="no">02</div><h3>Certain findings are replaced</h3><p>Names, dates, ID numbers and the rest are redacted in place, in the tab, before the text is copied, submitted or attached anywhere.</p><span class="go">Step two</span></div>
+      <div class="row"><div class="no">03</div><h3>Borderline findings wait for you</h3><p>A detection near the confidence threshold is neither silently kept nor silently removed. It is held in the review bucket, with its context, for your call.</p><span class="go">Your step</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title"><h2>The particulars</h2><div class="rule-line"></div><div class="tag">What is in the extension</div></div>
+    <div class="toc">
+      <div class="row"><div class="no">—</div><h3>Page, paste &amp; file</h3><p>The three ways text actually moves through a browser, all covered by the same flow.</p><span class="go">In the tab</span></div>
+      <div class="row"><div class="no">—</div><h3>Review bucket</h3><p>Borderline detections are surfaced, not buried — each one shown with its surrounding text so the decision takes seconds.</p><span class="go">No silent calls</span></div>
+      <div class="row"><div class="no">—</div><h3>In-tab processing</h3><p>The model runs where the text already is. Redaction is local arithmetic, at the speeds on the benchmarks page.</p><span class="go">On-device</span></div>
+      <div class="row"><div class="no">—</div><h3>No server round-trip</h3><p>There is no redaction service behind the extension. What you redact in a tab stays in the tab.</p><span class="go">Offline</span></div>
+    </div>
+
+    <div class="status-line">
+      <span class="st"><b>Status:</b> Available from source on GitHub</span>
+      <a class="btn" href="https://github.com/ctrimm/phi-redact-extension">View on GitHub &#8599;</a>
+      <a class="open-demo" href="../demo/">Or try the model in your browser &#8594;</a>
+    </div>
+  </section>
+</div>
+
+<footer><div class="wrap foot-in">
+  <div class="brand">phiredact</div>
+  <div class="honest">phi-redact is a detection tool that assists de-identification. It is not a certification of HIPAA compliance, and no output should be treated as expert-certified de-identified data.</div>
+  <div>Open source — <a href="https://github.com/ctrimm/phi-redact-sdk">github.com/ctrimm/phi-redact-sdk</a></div>
+</div></footer>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>phiredact — The Mac application</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<nav><div class="wrap nav-in">
+  <a class="brand" href="../">phi<i>redact</i></a>
+  <div class="nav-links">
+    <a href="../">The model</a><a href="./" class="here">Documents</a><a href="../benchmarks/">Benchmarks</a><a href="../demo/">Demo</a>
+    <a class="gh" href="https://github.com/ctrimm/phi-redact-sdk">GitHub &#8599;</a>
+  </div>
+</div></nav>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="kicker">The Mac application</div>
+    <h1 style="font-size:56px">For the files on your Mac.</h1>
+    <p class="lede">The documents that need redacting are rarely plain text. They are scanned forms, exported PDFs, screenshots, a photo of an ID. The Mac application reads them where they sit, proposes every redaction as a box you can inspect, and rewrites the file only when you say so. <strong>Nothing is uploaded — there is nowhere to upload to.</strong></p>
+    <div class="hero-meta">
+      <span><b>PDFs &amp; images</b>, opened in place</span>
+      <span><b>OCR + faces</b> on-device</span>
+      <span><b>Review first</b>, always</span>
+      <span>Open source</span>
+    </div>
+
+    <div class="doc-shot">
+      <img src="../assets/license-redacted.png" alt="Sample Pennsylvania license after redaction in the Mac application">
+      <div class="caption">
+        <span class="fig">FIG. 1</span>
+        <span>The application&rsquo;s work, finished: a sample license after review and burn-in. The portrait, the license number, the dates and the document discriminators were each proposed as a box, inspected, and burned into the pixels. The review screen that produced this is the product; the exported file is its receipt.</span>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-title"><h2>How it works</h2><div class="rule-line"></div><div class="tag">Four steps, one of them yours</div></div>
+    <div class="toc">
+      <div class="row"><div class="no">01</div><h3>Open a PDF or image</h3><p>Drag the file in, or right-click it in the Finder. Born-digital PDFs are read from their text layer; scans and photos go through OCR. The original is not touched.</p><span class="go">Step one</span></div>
+      <div class="row"><div class="no">02</div><h3>Boxes are proposed</h3><p>Vision OCR reads the page, face detection finds the portraits — including the small second portrait printed on most licenses — and the redaction model finds the names, numbers and dates in the text.</p><span class="go">Step two</span></div>
+      <div class="row"><div class="no">03</div><h3>You review every box</h3><p>Peek at what sits behind a box before you commit to it. Accept it, reject it, or draw a box the model missed. Nothing is final until this step is done — export is not even offered while proposals are waiting.</p><span class="go">Your step</span></div>
+      <div class="row"><div class="no">04</div><h3>Burn-in, metadata stripped</h3><p>Accepted boxes are burned into the pixels — the content is removed, not covered — and the exported file is written clean, with its metadata stripped.</p><span class="go">Step four</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title"><h2>The particulars</h2><div class="rule-line"></div><div class="tag">What is in the application</div></div>
+    <div class="toc">
+      <div class="row"><div class="no">—</div><h3>Vision OCR</h3><p>Apple&rsquo;s on-device text recognition reads scans and photographs, so a picture of a form is as redactable as the form itself.</p><span class="go">On-device</span></div>
+      <div class="row"><div class="no">—</div><h3>Face detection</h3><p>Portraits are found and proposed as boxes like any other finding — the photo on an ID is identifying information, and it is treated that way.</p><span class="go">On-device</span></div>
+      <div class="row"><div class="no">—</div><h3>True burn-in</h3><p>Redactions are written into the image data. There is no annotation layer to lift, no original pixels hiding under a rectangle.</p><span class="go">Not an overlay</span></div>
+      <div class="row"><div class="no">—</div><h3>Metadata stripped</h3><p>The exported file carries no EXIF, no document properties, no trace of what was removed or where it sat.</p><span class="go">Clean export</span></div>
+      <div class="row"><div class="no">—</div><h3>Review-first by default</h3><p>Automatic burn-in exists for those who want it. The default — and the design center — is a person confirming every box.</p><span class="go">The control</span></div>
+      <div class="row"><div class="no">—</div><h3>Entirely on-device</h3><p>OCR, face detection and the 11 MB model all run on the Mac holding the file. The application has no server to phone home to.</p><span class="go">Offline</span></div>
+    </div>
+
+    <div class="status-line">
+      <span class="st"><b>Status:</b> In active development — source and progress on GitHub</span>
+      <a class="btn" href="https://github.com/ctrimm/phi-redact-mac-app">View on GitHub &#8599;</a>
+      <a class="open-demo" href="../demo/">Or try the model in your browser &#8594;</a>
+    </div>
+  </section>
+</div>
+
+<footer><div class="wrap foot-in">
+  <div class="brand">phiredact</div>
+  <div class="honest">phi-redact is a detection tool that assists de-identification. It is not a certification of HIPAA compliance, and no output should be treated as expert-certified de-identified data.</div>
+  <div>Open source — <a href="https://github.com/ctrimm/phi-redact-sdk">github.com/ctrimm/phi-redact-sdk</a></div>
+</div></footer>
+
+</body>
+</html>

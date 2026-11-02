@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>phiredact — Redact the document, on the device it lives on</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav><div class="wrap nav-in">
+  <a class="brand" href="./">phi<i>redact</i></a>
+  <div class="nav-links">
+    <a href="./" class="here">The model</a><a href="mac/">Documents</a><a href="benchmarks/">Benchmarks</a><a href="demo/">Demo</a>
+    <a class="gh" href="https://github.com/ctrimm/phi-redact-sdk">GitHub &#8599;</a>
+  </div>
+</div></nav>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="kicker">On-device redaction for documents &amp; images</div>
+    <h1>Redact the document,<br>not just the <span class="blk">text</span>.</h1>
+    <p class="lede">phi-redact finds names, dates, ID numbers — and faces — inside PDFs and images. It shows you <strong>every box it proposes</strong>, waits for your review, and only then burns the redaction in. <strong>The file never leaves your computer.</strong></p>
+    <div class="hero-meta">
+      <span><b>0</b> files uploaded, ever</span>
+      <span><b>11 MB</b> model, runs on-device</span>
+      <span><b>100%</b> of boxes reviewed by a person first</span>
+      <span>Open source</span>
+    </div>
+
+    <div class="doc-shot">
+      <img src="assets/license-redacted.png" alt="Sample Pennsylvania license after review and burn-in redaction">
+      <div class="caption">
+        <span class="fig">FIG. 1</span>
+        <span>A sample driver&rsquo;s license after redaction. Each black bar was proposed by the model, inspected by a person — peek at what sits behind any box before you commit — and then burned into the pixels. There is no layer underneath to peel back, and the exported file carries no metadata.</span>
+      </div>
+    </div>
+
+    <div class="rules">
+      <div class="rule"><div class="n">No. 1</div><h3>Found locally</h3><p>OCR, face detection and the redaction model all run on the device holding the document. A tool for sensitive files cannot itself be a place files are sent.</p></div>
+      <div class="rule"><div class="n">No. 2</div><h3>Reviewed by a person</h3><p>Automatic burn-in exists, but it is not the default. The review screen is the product: accept, reject, peek behind a box, or draw one the model missed.</p></div>
+      <div class="rule"><div class="n">No. 3</div><h3>Burned in, not covered</h3><p>A black rectangle drawn over a PDF is not a redaction — the text survives beneath it. phi-redact removes the content and strips the metadata.</p></div>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-title"><h2>Part II — The measurements</h2><div class="rule-line"></div><div class="tag">Same harness, stated conditions</div></div>
+    <p class="sec-sub">Every figure below comes from the public benchmark harness in the SDK repository. Configurations and corpus sizes are stated beside each result; the full data sheet is on the <a href="benchmarks/" style="border-bottom:1px solid var(--red)">benchmarks page</a>.</p>
+
+    <div class="t-head"><h3>Table 1 — Against the incumbent</h3><div class="sc">Head-to-head · shared corpus · same harness</div></div>
+    <table class="ptable num">
+      <tr><th>Measure</th><th>phiredact</th><th>Microsoft Presidio</th><th>Conditions</th></tr>
+      <tr><td>Clinical strict F1</td><td class="phi">0.948</td><td>0.466</td><td class="cond">Presidio default configuration</td></tr>
+      <tr><td>Clinical strict F1, tuned</td><td class="phi">0.948</td><td>0.774</td><td class="cond">De-identifier model + threshold tuning, ~573 ms/note</td></tr>
+      <tr><td>Latency, median per note</td><td class="phi">8.4 ms</td><td>37.8 ms</td><td class="cond">Small notes, CPU, default configs</td></tr>
+      <tr><td>Installed footprint</td><td class="phi">11.3 MB</td><td>~840 MB</td><td class="cond">Model + runtime, default install</td></tr>
+      <tr><td>Full-value recall, golden set</td><td class="phi">~0.98</td><td>—</td><td class="cond">164-note golden corpus</td></tr>
+    </table>
+    <p class="note-line"><b>Read fairly:</b> Presidio is a general framework — 30+ entity types, many languages, images and structured data. phiredact is a specialist: English clinical and case text, 32 entity types, one job. Where the generalist wins, the full comparison says so; it is published with the harness.</p>
+
+    <div class="cols2">
+      <div>
+        <div class="t-head"><h3>Table 2 — Cost by document length</h3><div class="sc">Median ms / document</div></div>
+        <table class="ptable num">
+          <tr><th>Length</th><th>Rules + merge</th><th>+ Neural</th></tr>
+          <tr><td>~500 chars — a portal message</td><td class="phi">0.03</td><td>8</td></tr>
+          <tr><td>~2,000 — an encounter note</td><td class="phi">0.13</td><td>39–48</td></tr>
+          <tr><td>~10,000 — a dictation transcript</td><td class="phi">0.64</td><td>224–241</td></tr>
+          <tr><td>~50,000 — a record bundle</td><td class="phi">3.5</td><td>~1,390</td></tr>
+        </table>
+        <p class="note-line">Rules + merge shown for Rust; neural is the Python/Rust range. Steady state at length: ~24–28 ms per 1,000 characters. Batch ceiling, rules alone: ~97,000 small documents per second.</p>
+      </div>
+      <div>
+        <div class="cert">
+          <div class="stamp">Digest&#8209;Verified</div>
+          <div class="sc">Parity certificate</div>
+          <div class="big">4 implementations.<br>1 output.</div>
+          <p>Python, TypeScript, Rust and Swift builds of the engine produce <b>byte-identical output</b>, verified by SHA-256 digests over canonical results — at every document length tested, 100 to 50,000 characters. Known exception, disclosed here rather than buried: scored digests at 2,000+ characters can differ in the fourth decimal of a span score. Redacted text: identical.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title"><h2>The model, at work</h2><div class="rule-line"></div><div class="tag">Recorded output · sample note</div></div>
+    <div class="demo-panel">
+      <div class="demo-head"><span class="t">Fig. 2 — The model · sample discharge note</span><span class="live">Sample — recorded output</span></div>
+      <div class="panes">
+        <div class="pane left">
+          <div class="lab">Input</div>
+          Patient: Daniel R. Okafor, DOB 11/02/1958, MRN 07-441-2093. Admitted 09/18/2026 with chest pain. Emergency contact: his wife Elena Okafor, (614) 555-0182. Home: 418 Walnut Creek Dr, Columbus, OH 43215. SSN on file: 301-42-7786. Follow up with Dr. Priya Nair in two weeks. Member ID: UHC-88-204-5519.
+        </div>
+        <div class="pane right">
+          <div class="lab">Output — 1.6 ms later</div>
+          Patient: <span class="bar">Daniel R. Okafor</span>, DOB <span class="bar">11/02/1958</span>, MRN <span class="bar">07-441-2093</span>. Admitted <span class="bar">09/18/2026</span> with chest pain. Emergency contact: his wife <span class="bar">Elena Okafor</span>, <span class="bar">(614) 555-0182</span>. Home: <span class="bar">418 Walnut Creek Dr, Columbus, OH 43215</span>. SSN on file: <span class="bar">301-42-7786</span>. Follow up with Dr. <span class="bar">Priya Nair</span> in two weeks. Member ID: <span class="bar">UHC-88-204-5519</span>.
+        </div>
+      </div>
+      <div class="demo-foot">
+        <div class="found">
+          <span class="f"><b>11</b> entities</span><span class="f">NAME &times;3</span><span class="f">DATE &times;2</span><span class="f">ADDRESS</span><span class="f">PHONE</span><span class="f">SSN</span><span class="f">MRN</span><span class="f">MEMBER ID</span>
+        </div>
+        <a class="open-demo" href="demo/">Open the full demo &#8594;</a>
+      </div>
+    </div>
+    <div class="caption">
+      <span class="fig">FIG. 2</span>
+      <span>The same model, shown on a sample note. The 11 MB model downloads once and the redaction happens on your machine, in this tab — the text above was never typed into a server, and yours will not be either. <a href="demo/">Try it on your own words.</a></span>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title"><h2>The whole instrument</h2><div class="rule-line"></div><div class="tag">Three surfaces, one engine</div></div>
+    <div class="toc">
+      <div class="row"><div class="no">01</div><h3>Mac application</h3><p>Right-click a PDF or image and redact it: Vision OCR reads the page, face detection finds the portraits, the model finds the text, you review the boxes, the file is rewritten clean.</p><a class="go" href="mac/">For macOS &#8594;</a></div>
+      <div class="row"><div class="no">02</div><h3>Software development kits</h3><p>Python, TypeScript, Rust and Swift libraries for pipelines, log scrubbing and LLM prompt hygiene. Four implementations, byte-identical output, verified by digest on every release.</p><a class="go" href="https://github.com/ctrimm/phi-redact-sdk">For developers &#8599;</a></div>
+      <div class="row"><div class="no">03</div><h3>Chrome extension</h3><p>Redact a page, a paste or a file before it goes anywhere. Borderline findings wait in a review bucket rather than being silently kept or silently removed.</p><a class="go" href="extension/">For the browser &#8594;</a></div>
+    </div>
+
+    <div class="note"><b>A note on what this is not.</b> phi-redact is a detection tool that assists de-identification. It is not a certification, and its output is not expert-certified de-identified data. On documents that matter, the review step is not a courtesy — it is the control.</div>
+  </section>
+</div>
+
+<footer><div class="wrap foot-in">
+  <div class="brand">phiredact</div>
+  <div class="honest">phi-redact is a detection tool that assists de-identification. It is not a certification of HIPAA compliance, and no output should be treated as expert-certified de-identified data.</div>
+  <div>Open source — <a href="https://github.com/ctrimm/phi-redact-sdk">github.com/ctrimm/phi-redact-sdk</a></div>
+</div></footer>
+
+</body>
+</html>

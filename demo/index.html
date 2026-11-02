@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>phiredact — Demo: try it on your own words</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<nav><div class="wrap nav-in">
+  <a class="brand" href="../">phi<i>redact</i></a>
+  <div class="nav-links">
+    <a href="../">The model</a><a href="../mac/">Documents</a><a href="../benchmarks/">Benchmarks</a><a href="./" class="here">Demo</a>
+    <a class="gh" href="https://github.com/ctrimm/phi-redact-sdk">GitHub &#8599;</a>
+  </div>
+</div></nav>
+
+<div class="wrap">
+  <div class="hero" style="padding-top:56px">
+    <div class="kicker">The demo</div>
+    <h1 style="font-size:54px">Try it on your own words.</h1>
+    <p class="lede">Paste a note, a case summary, a page of logs. The model below is the same 11 MB build that ships in the SDKs — and when it runs here, in this tab, <strong>nothing you paste is sent anywhere</strong>.</p>
+    <p class="preview-note"><b>Preview:</b> the in-browser model is being wired up. Until then, the working demo runs at <a href="https://corytrimm.com/phi-redact">corytrimm.com/phi-redact</a>.</p>
+
+    <div class="chips">
+      <span class="chip on">Discharge note</span>
+      <span class="chip">Case note</span>
+      <span class="chip">Log lines</span>
+    </div>
+
+    <div class="demo-panel" style="margin-top:22px">
+      <div class="demo-head"><span class="t">Sample — discharge note</span><span class="live">Sample — recorded output</span></div>
+      <div class="panes">
+        <div class="pane left">
+          <div class="lab">Your text</div>
+          <textarea class="ta" rows="9" spellcheck="false">Patient: Daniel R. Okafor, DOB 11/02/1958, MRN 07-441-2093. Admitted 09/18/2026 with chest pain. Emergency contact: his wife Elena Okafor, (614) 555-0182. Home: 418 Walnut Creek Dr, Columbus, OH 43215. SSN on file: 301-42-7786. Follow up with Dr. Priya Nair in two weeks. Member ID: UHC-88-204-5519.</textarea>
+        </div>
+        <div class="pane right">
+          <div class="lab">Redacted — 1.6 ms</div>
+          Patient: <span class="bar">Daniel R. Okafor</span>, DOB <span class="bar">11/02/1958</span>, MRN <span class="bar">07-441-2093</span>. Admitted <span class="bar">09/18/2026</span> with chest pain. Emergency contact: his wife <span class="bar">Elena Okafor</span>, <span class="bar">(614) 555-0182</span>. Home: <span class="bar">418 Walnut Creek Dr, Columbus, OH 43215</span>. SSN on file: <span class="bar">301-42-7786</span>. Follow up with Dr. <span class="bar">Priya Nair</span> in two weeks. Member ID: <span class="bar">UHC-88-204-5519</span>.
+        </div>
+      </div>
+      <div class="demo-foot">
+        <div class="found">
+          <span class="f"><b>11</b> entities found</span><span class="f">NAME &times;3</span><span class="f">DATE &times;2</span><span class="f">ADDRESS</span><span class="f">PHONE</span><span class="f">SSN</span><span class="f">MRN</span><span class="f">MEMBER ID</span>
+        </div>
+        <div style="display:flex;gap:10px">
+          <span class="btn small solid">Copy redacted text</span>
+          <span class="btn small">Clear</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="assure">
+    <div class="a"><div class="n">First</div><h3>Built to run in this tab</h3><p>The model is built to execute on your machine, in the browser. There is no redaction endpoint to send text to — redaction works with the network cable pulled.</p></div>
+    <div class="a"><div class="n">Second</div><h3>It will download once</h3><p>The 11 MB model is fetched a single time and cached by your browser. After that, every redaction is local arithmetic, at the speeds in the tables.</p></div>
+    <div class="a"><div class="n">Third</div><h3>Closing the tab ends it</h3><p>Your text will live only in this page&rsquo;s memory. Close the tab and it is gone — there is no account, no history, and nothing on a server to delete.</p></div>
+  </div>
+
+  <section>
+    <div class="sec-title"><h2>Take it out of the browser</h2><div class="rule-line"></div><div class="tag">Same engine, three more places</div></div>
+    <div class="toc">
+      <div class="row"><div class="no">01</div><h3>Software development kits</h3><p>For pipelines, batch jobs and log scrubbing. Python, TypeScript, Rust and Swift — install once, redact offline forever.</p><a class="go" href="https://github.com/ctrimm/phi-redact-sdk">Get the SDKs &#8599;</a></div>
+      <div class="row"><div class="no">02</div><h3>Mac application</h3><p>The same engine for PDFs and images, with OCR, face detection and a review screen before anything is burned in.</p><a class="go" href="../mac/">For macOS &#8594;</a></div>
+      <div class="row"><div class="no">03</div><h3>Chrome extension</h3><p>This demo, attached to every page and paste in your browser — with a review bucket for the borderline calls.</p><a class="go" href="../extension/">For the browser &#8594;</a></div>
+    </div>
+  </section>
+</div>
+
+<footer><div class="wrap foot-in">
+  <div class="brand">phiredact</div>
+  <div class="honest">phi-redact is a detection tool that assists de-identification. It is not a certification of HIPAA compliance, and no output should be treated as expert-certified de-identified data.</div>
+  <div>Open source — <a href="https://github.com/ctrimm/phi-redact-sdk">github.com/ctrimm/phi-redact-sdk</a></div>
+</div></footer>
+
+</body>
+</html>

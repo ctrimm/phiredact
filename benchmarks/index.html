@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>phiredact — Benchmarks: measured, not marketed</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<nav><div class="wrap nav-in">
+  <a class="brand" href="../">phi<i>redact</i></a>
+  <div class="nav-links">
+    <a href="../">The model</a><a href="../mac/">Documents</a><a href="./" class="here">Benchmarks</a><a href="../demo/">Demo</a>
+    <a class="gh" href="https://github.com/ctrimm/phi-redact-sdk">GitHub &#8599;</a>
+  </div>
+</div></nav>
+
+<div class="wrap">
+  <div class="hero" style="padding-top:52px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:16px;border-bottom:3px double var(--ink)">
+      <div class="kicker" style="margin-bottom:0">Data sheet — Model PHR-v9 · Rev. 2026-10</div>
+      <div style="font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);text-align:right;line-height:1.8">Subject: on-device PII / PHI redaction<br>Classification: open source</div>
+    </div>
+    <h1 style="font-size:58px;margin-top:34px">Measured, <em style="font-style:normal;color:var(--red)">not marketed.</em></h1>
+    <p class="lede">phiredact is a purpose-built redaction instrument: an <strong>11 MB token-classification model</strong> and a checksum-gated rules engine, running entirely on-device. This page is its data sheet. Every figure comes from the public benchmark harness in the SDK repository; configurations and corpus sizes are stated beside each result.</p>
+
+    <div class="t-head"><h3>Table 1 — Against the incumbent</h3><div class="sc">Head-to-head · shared corpus · same harness</div></div>
+    <table class="ptable num">
+      <tr><th>Measure</th><th>phiredact</th><th>Microsoft Presidio</th><th>Conditions</th></tr>
+      <tr><td>Clinical strict F1</td><td class="phi">0.948</td><td>0.466</td><td class="cond">Presidio default configuration</td></tr>
+      <tr><td>Clinical strict F1, tuned</td><td class="phi">0.948</td><td>0.774</td><td class="cond">De-identifier model + threshold tuning, ~573 ms/note</td></tr>
+      <tr><td>Latency, median per note</td><td class="phi">8.4 ms</td><td>37.8 ms</td><td class="cond">Small notes, CPU, default configs</td></tr>
+      <tr><td>Installed footprint</td><td class="phi">11.3 MB</td><td>~840 MB</td><td class="cond">Model + runtime, default install</td></tr>
+      <tr><td>Full-value recall, golden set</td><td class="phi">~0.98</td><td>—</td><td class="cond">164-note golden corpus</td></tr>
+    </table>
+    <p class="note-line"><b>Read fairly:</b> Presidio is a general framework — 30+ entity types, many languages, images and structured data. phiredact is a specialist: English clinical and case text, 32 entity types, one job. Where the generalist wins, this page says so — see the last section.</p>
+
+    <div class="cols2">
+      <div>
+        <div class="t-head"><h3>Table 2 — Cost by document length</h3><div class="sc">Median ms / document</div></div>
+        <table class="ptable num">
+          <tr><th>Length</th><th>Rules + merge</th><th>+ Neural</th></tr>
+          <tr><td>~500 chars — a portal message</td><td class="phi">0.03</td><td>8</td></tr>
+          <tr><td>~2,000 — an encounter note</td><td class="phi">0.13</td><td>39–48</td></tr>
+          <tr><td>~10,000 — a dictation transcript</td><td class="phi">0.64</td><td>224–241</td></tr>
+          <tr><td>~50,000 — a record bundle</td><td class="phi">3.5</td><td>~1,390</td></tr>
+        </table>
+        <p class="note-line">Rules + merge shown for Rust; neural is the Python/Rust range. Steady state at length: ~24–28 ms per 1,000 characters. Batch ceiling, rules alone: ~97,000 small documents per second.</p>
+      </div>
+      <div>
+        <div class="cert">
+          <div class="stamp">Digest&#8209;Verified</div>
+          <div class="sc">Parity certificate</div>
+          <div class="big">4 implementations.<br>1 output.</div>
+          <p>Python, TypeScript, Rust and Swift builds of the engine produce <b>byte-identical output</b>, verified by SHA-256 digests over canonical results — at every document length tested, 100 to 50,000 characters. Known exception, disclosed in this data sheet: scored digests at 2,000+ characters can differ in the fourth decimal of a span score. Redacted text: identical.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-title"><h2>Methods &amp; limits</h2><div class="rule-line"></div><div class="tag">How the numbers were made</div></div>
+    <div class="methods">
+      <div class="sc">Methods</div>
+      <p>Benchmarks were run with interleaved language order over shared, seeded corpora, so no implementation benefits from cache warmth or ordering. Corpus hashes and per-stage output digests are published in the repository (<span class="mono">PERFORMANCE.md</span>), and every figure on this page can be re-derived from the harness that ships with the SDK.</p>
+      <p>The golden set is a 164-note corpus of synthetic clinical and case text with hand-checked spans; the full-value recall figure counts a detection only when the entire value — name, number, date — is captured. The clinical corpus behind the strict F1 figures is a separate, larger set of clinical notes scored span-for-span against a single annotation standard, with the same harness driving both systems.</p>
+      <p><b style="color:var(--ink)">Limits.</b> Small-note figures describe micro-text — notes of a few hundred characters — and are labeled as such wherever they appear; Table 2 exists precisely so the per-note numbers are never mistaken for document-scale costs. The corpora are English. phiredact detects 32 entity types in clinical and case text; it is not a general-purpose anonymization framework, and nothing on this page should be read as a claim beyond the corpora described.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title"><h2>Where the generalist wins</h2><div class="rule-line"></div><div class="tag">Fair play, stated plainly</div></div>
+    <div class="toc">
+      <div class="row"><div class="no">01</div><h3>Breadth of entities</h3><p>Presidio ships recognizers for a wider world — more identifier families, more countries, more formats. phiredact covers 32 types in one domain and declines the rest.</p><span class="go">Presidio</span></div>
+      <div class="row"><div class="no">02</div><h3>Languages</h3><p>Presidio works across many languages. phiredact is English-first, tuned on English clinical and case text; other languages are not claimed.</p><span class="go">Presidio</span></div>
+      <div class="row"><div class="no">03</div><h3>Images &amp; structured data</h3><p>As a framework, Presidio extends to images, DICOM and tabular pipelines. phiredact&rsquo;s image support lives in the Mac application, and its SDKs are text-only.</p><span class="go">Presidio</span></div>
+      <div class="row"><div class="no">04</div><h3>Configuration matters</h3><p>The honest finding of the head-to-head: roughly two-thirds of the gap between the default Presidio row and phiredact was configuration, not architecture — a de-identifier model plus threshold tuning recovers most of it, at ~573 ms per note instead of 37.8. Default configurations are what most deployments actually run, which is why both rows are printed.</p><span class="go">Both, tuned</span></div>
+    </div>
+
+    <div class="note"><b>The claim, in one sentence.</b> On English clinical and case text, measured on a shared corpus with a shared harness, a specialist 11 MB model that runs on-device outperforms the default configuration of the general framework — and the tuned framework&rsquo;s numbers are printed above, next to ours.</div>
+  </section>
+</div>
+
+<footer><div class="wrap foot-in">
+  <div class="brand">phiredact</div>
+  <div class="honest">phi-redact is a detection tool that assists de-identification. It is not a certification of HIPAA compliance, and no output should be treated as expert-certified de-identified data.</div>
+  <div>Open source — <a href="https://github.com/ctrimm/phi-redact-sdk">github.com/ctrimm/phi-redact-sdk</a></div>
+</div></footer>
+
+</body>
+</html>
