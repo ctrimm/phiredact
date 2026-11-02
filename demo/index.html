@@ -43,8 +43,7 @@ posthog.init('phc_nwznU63jZGLA4s2sDrxC5bgScsBkPJqc26VL6tQxZ7S6', {
   <div class="hero" style="padding-top:56px">
     <div class="kicker">The demo</div>
     <h1 style="font-size:54px">Try it on your own words.</h1>
-    <p class="lede">Paste a note, a case summary, a page of logs. The model below is the same 11 MB build that ships in the SDKs — and when it runs here, in this tab, <strong>nothing you paste is sent anywhere</strong>.</p>
-    <p class="preview-note"><b>Preview:</b> the in-browser model is being wired up. Until then, the working demo runs at <a href="https://corytrimm.com/phi-redact" data-ph-capture="outbound_link_clicked" data-ph-props='{"target":"live_demo"}'>corytrimm.com/phi-redact</a>.</p>
+    <p class="lede">Paste a note, a case summary, a page of logs. The model below is the same 11 MB build that ships in the SDKs — it runs here, in this tab, and <strong>nothing you paste is sent anywhere</strong>.</p>
 
     <div class="chips ph-no-capture">
       <button type="button" data-ph-capture="demo_preset_chosen" data-ph-props='{"preset":"discharge"}' class="chip on">Discharge note</button>
@@ -53,33 +52,36 @@ posthog.init('phc_nwznU63jZGLA4s2sDrxC5bgScsBkPJqc26VL6tQxZ7S6', {
     </div>
 
     <div class="demo-panel" style="margin-top:22px">
-      <div class="demo-head"><span class="t">Sample — discharge note</span><span class="live">Sample — recorded output</span></div>
+      <div class="demo-head"><span class="t" id="demo-title">Sample — discharge note</span><span class="live" id="demo-status" aria-live="polite">Sample — recorded output</span></div>
       <div class="panes">
         <div class="pane left ph-no-capture">
           <label class="lab" for="demo-input">Your text</label>
-          <textarea class="ta ph-no-capture" id="demo-input" rows="9" spellcheck="false">Patient: Daniel R. Okafor, DOB 11/02/1958, MRN 07-441-2093. Admitted 09/18/2026 with chest pain. Emergency contact: his wife Elena Okafor, (614) 555-0182. Home: 418 Walnut Creek Dr, Columbus, OH 43215. SSN on file: 301-42-7786. Follow up with Dr. Priya Nair in two weeks. Member ID: UHC-88-204-5519.</textarea>
+          <div class="ta-wrap">
+            <div class="ta-backdrop" aria-hidden="true"><div class="ta-mirror" id="demo-mirror"></div></div>
+            <textarea class="ta ph-no-capture" id="demo-input" rows="9" spellcheck="false">Patient: Daniel R. Okafor, DOB 11/02/1958, MRN 07-441-2093. Admitted 09/18/2026 with chest pain. Emergency contact: his wife Elena Okafor, (614) 555-0182. Home: 418 Walnut Creek Dr, Columbus, OH 43215. SSN on file: 301-42-7786. Follow up with Dr. Priya Nair in two weeks. Member ID: UHC-88-204-5519.</textarea>
+          </div>
         </div>
         <div class="pane right ph-no-capture">
-          <div class="lab">Redacted — 1.6 ms</div>
-          Patient: <span class="bar">Daniel R. Okafor</span>, DOB <span class="bar">11/02/1958</span>, MRN <span class="bar">07-441-2093</span>. Admitted <span class="bar">09/18/2026</span> with chest pain. Emergency contact: his wife <span class="bar">Elena Okafor</span>, <span class="bar">(614) 555-0182</span>. Home: <span class="bar">418 Walnut Creek Dr, Columbus, OH 43215</span>. SSN on file: <span class="bar">301-42-7786</span>. Follow up with Dr. <span class="bar">Priya Nair</span> in two weeks. Member ID: <span class="bar">UHC-88-204-5519</span>.
+          <div class="lab" id="demo-outlab">Redacted — 1.6 ms</div>
+          <div class="out" id="demo-output">Patient: <span class="bar">Daniel R. Okafor</span>, DOB <span class="bar">11/02/1958</span>, MRN <span class="bar">07-441-2093</span>. Admitted <span class="bar">09/18/2026</span> with chest pain. Emergency contact: his wife <span class="bar">Elena Okafor</span>, <span class="bar">(614) 555-0182</span>. Home: <span class="bar">418 Walnut Creek Dr, Columbus, OH 43215</span>. SSN on file: <span class="bar">301-42-7786</span>. Follow up with Dr. <span class="bar">Priya Nair</span> in two weeks. Member ID: <span class="bar">UHC-88-204-5519</span>.</div>
         </div>
       </div>
       <div class="demo-foot">
-        <div class="found">
+        <div class="found" id="demo-found">
           <span class="f"><b>11</b> entities found</span><span class="f">NAME &times;3</span><span class="f">DATE &times;2</span><span class="f">ADDRESS</span><span class="f">PHONE</span><span class="f">SSN</span><span class="f">MRN</span><span class="f">MEMBER ID</span>
         </div>
         <div style="display:flex;gap:10px">
-          <button type="button" class="btn small solid">Copy redacted text</button>
-          <button type="button" class="btn small">Clear</button>
+          <button type="button" class="btn small solid" id="demo-copy">Copy redacted text</button>
+          <button type="button" class="btn small" id="demo-clear">Clear</button>
         </div>
       </div>
     </div>
   </div>
 
   <div class="assure">
-    <div class="a"><div class="n">First</div><h2>Built to run in this tab</h2><p>The model is built to execute on your machine, in the browser. There is no redaction endpoint to send text to — redaction works with the network cable pulled.</p></div>
-    <div class="a"><div class="n">Second</div><h2>It will download once</h2><p>The 11 MB model is fetched a single time and cached by your browser. After that, every redaction is local arithmetic, at the speeds in the tables.</p></div>
-    <div class="a"><div class="n">Third</div><h2>Closing the tab ends it</h2><p>Your text will live only in this page&rsquo;s memory. Close the tab and it is gone — there is no account, no history, and nothing on a server to delete.</p></div>
+    <div class="a"><div class="n">First</div><h2>It runs in this tab</h2><p>The model executes on your machine, in the browser. There is no redaction endpoint to send text to — the page works with the network cable pulled.</p></div>
+    <div class="a"><div class="n">Second</div><h2>It downloads once</h2><p>The 11 MB model is fetched a single time and cached by your browser. After that, every redaction is local arithmetic, at the speeds in the tables.</p></div>
+    <div class="a"><div class="n">Third</div><h2>Closing the tab ends it</h2><p>Your text lives only in this page&rsquo;s memory. Close the tab and it is gone — there is no account, no history, and nothing on a server to delete.</p></div>
   </div>
 
   <section>
@@ -99,5 +101,6 @@ posthog.init('phc_nwznU63jZGLA4s2sDrxC5bgScsBkPJqc26VL6tQxZ7S6', {
     <div class="foot-legal"><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a><button type="button" data-consent-settings>Cookie settings</button></div></div>
 </div></footer>
 
+<script type="module" src="../assets/demo.js"></script>
 </body>
 </html>
