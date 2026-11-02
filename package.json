@@ -1,0 +1,18 @@
+{
+  "name": "phiredact-site",
+  "version": "1.0.0",
+  "description": "phiredact.com — static site, with CI checks (overflow + axe WCAG 2.1 AA + HTML/CSS lint)",
+  "scripts": {
+    "check": "node scripts/check.mjs && npm run validate:html && npm run lint:css",
+    "validate:html": "html-validate index.html demo/index.html benchmarks/index.html mac/index.html extension/index.html",
+    "lint:css": "stylelint \"assets/style.css\""
+  },
+  "devDependencies": {
+    "axe-core": "4.14.0",
+    "html-validate": "11.18.0",
+    "playwright": "1.64.1",
+    "stylelint": "17.16.0",
+    "stylelint-config-standard": "40.0.0"
+  },
+  "private": true
+}
