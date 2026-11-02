@@ -86,6 +86,9 @@ table.ptable{width:100%;border-collapse:collapse}
 .ptable td.cond{font-size:13.5px;color:var(--faint)}
 .note-line{font-size:13.5px;color:var(--faint);line-height:1.65;padding:12px 0 4px;max-width:900px}
 .note-line b{color:var(--soft)}
+.ptable.text th,.ptable.text td{text-align:left}
+.ptable.text td{font-size:15px;line-height:1.6;color:var(--soft)}
+.ptable.text td:first-child{font-family:var(--mono);font-size:13.5px;color:var(--ink);white-space:nowrap}
 .cols2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
 
 /* parity certificate */
@@ -253,3 +256,24 @@ button.chip{font-family:var(--mono)}
 /* picture wrapper keeps the doc-shot image at full column width */
 .doc-shot picture{display:block}
 button{font:inherit;color:inherit}
+
+/* footer legal row (privacy / terms / cookie settings) */
+.foot-legal{margin-top:10px;display:flex;gap:8px 18px;flex-wrap:wrap;align-items:center}
+.foot-legal button{background:none;border:none;border-bottom:1px solid var(--line2);padding:0;cursor:pointer}
+.foot-legal button:hover{color:var(--ink);border-color:var(--red)}
+
+/* consent banner (Ledger bar, fixed overlay — never shifts the page) */
+.consent-banner{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--paper);
+  border-top:3px solid var(--red);box-shadow:0 -14px 34px rgba(27,23,18,.16);padding:16px 0 18px}
+.consent-in{max-width:1180px;margin:0 auto;padding:0 44px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+.consent-text{font-size:15px;line-height:1.55;color:var(--soft);max-width:700px}
+.consent-text a{color:var(--ink);border-bottom:1px solid var(--red);white-space:nowrap}
+.consent-actions{display:flex;gap:12px;flex:none}
+.consent-btn{min-height:44px;padding:11px 22px;font-size:15px;font-weight:600;line-height:1.2;
+  background:var(--paper);color:var(--ink);border:1.5px solid var(--ink);cursor:pointer}
+.consent-btn:hover{background:var(--ink);color:var(--bg)}
+@media (max-width:640px){
+  .consent-in{padding:0 20px;flex-direction:column;align-items:stretch;gap:12px}
+  .consent-actions{display:flex}
+  .consent-btn{flex:1;padding-left:10px;padding-right:10px}
+}
