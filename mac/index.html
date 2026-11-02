@@ -4,7 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>phiredact — The Mac application</title>
+<meta name="description" content="The phiredact Mac application redacts PDFs and images where they sit — OCR, face detection and the model on-device, every box reviewed by you, redactions burned in.">
 <link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 </head>
 <body>
 
@@ -16,7 +18,7 @@
   </div>
 </div></nav>
 
-<div class="wrap">
+<main class="wrap">
   <div class="hero">
     <div class="kicker">The Mac application</div>
     <h1 style="font-size:56px">For the files on your Mac.</h1>
@@ -29,7 +31,7 @@
     </div>
 
     <div class="doc-shot">
-      <img src="../assets/license-redacted.png" alt="Sample Pennsylvania license after redaction in the Mac application">
+      <picture><source srcset="../assets/license-redacted.webp" type="image/webp"><img src="../assets/license-redacted.png" alt="Sample Pennsylvania license after redaction in the Mac application" width="1011" height="637" fetchpriority="high"></picture>
       <div class="caption">
         <span class="fig">FIG. 1</span>
         <span>The application&rsquo;s work, finished: a sample license after review and burn-in. The portrait, the license number, the dates and the document discriminators were each proposed as a box, inspected, and burned into the pixels. The review screen that produced this is the product; the exported file is its receipt.</span>
@@ -64,7 +66,7 @@
       <a class="open-demo" href="../demo/">Or try the model in your browser &#8594;</a>
     </div>
   </section>
-</div>
+</main>
 
 <footer><div class="wrap foot-in">
   <div class="brand">phiredact</div>

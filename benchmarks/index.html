@@ -4,7 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>phiredact — Benchmarks: measured, not marketed</title>
+<meta name="description" content="phiredact's data sheet: head-to-head benchmarks against Microsoft Presidio, cost by document length, and the methods and limits behind the numbers. Measured, not marketed.">
 <link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 </head>
 <body>
 
@@ -16,16 +18,17 @@
   </div>
 </div></nav>
 
-<div class="wrap">
+<main class="wrap">
   <div class="hero" style="padding-top:52px">
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:16px;border-bottom:3px double var(--ink)">
-      <div class="kicker" style="margin-bottom:0">Data sheet — Model PHR-v9 · Rev. 2026-10</div>
-      <div style="font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);text-align:right;line-height:1.8">Subject: on-device PII / PHI redaction<br>Classification: open source</div>
+    <div class="ds-head">
+      <div class="kicker">Data sheet — Model PHR-v9 · Rev. 2026-10</div>
+      <div class="ds-meta">Subject: on-device PII / PHI redaction<br>Classification: open source</div>
     </div>
     <h1 style="font-size:58px;margin-top:34px">Measured, <em style="font-style:normal;color:var(--red)">not marketed.</em></h1>
     <p class="lede">phiredact is a purpose-built redaction instrument: an <strong>11 MB token-classification model</strong> and a checksum-gated rules engine, running entirely on-device. This page is its data sheet. Every figure comes from the public benchmark harness in the SDK repository; configurations and corpus sizes are stated beside each result.</p>
 
-    <div class="t-head"><h3>Table 1 — Against the incumbent</h3><div class="sc">Head-to-head · shared corpus · same harness</div></div>
+    <div class="t-head"><h2>Table 1 — Against the incumbent</h2><div class="sc">Head-to-head · shared corpus · same harness</div></div>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Table 1, phiredact versus Microsoft Presidio — scroll horizontally for all columns">
     <table class="ptable num">
       <tr><th>Measure</th><th>phiredact</th><th>Microsoft Presidio</th><th>Conditions</th></tr>
       <tr><td>Clinical strict F1</td><td class="phi">0.948</td><td>0.466</td><td class="cond">Presidio default configuration</td></tr>
@@ -34,11 +37,12 @@
       <tr><td>Installed footprint</td><td class="phi">11.3 MB</td><td>~840 MB</td><td class="cond">Model + runtime, default install</td></tr>
       <tr><td>Full-value recall, golden set</td><td class="phi">~0.98</td><td>—</td><td class="cond">164-note golden corpus</td></tr>
     </table>
+    </div>
     <p class="note-line"><b>Read fairly:</b> Presidio is a general framework — 30+ entity types, many languages, images and structured data. phiredact is a specialist: English clinical and case text, 32 entity types, one job. Where the generalist wins, this page says so — see the last section.</p>
 
     <div class="cols2">
       <div>
-        <div class="t-head"><h3>Table 2 — Cost by document length</h3><div class="sc">Median ms / document</div></div>
+        <div class="t-head"><h2>Table 2 — Cost by document length</h2><div class="sc">Median ms / document</div></div>
         <table class="ptable num">
           <tr><th>Length</th><th>Rules + merge</th><th>+ Neural</th></tr>
           <tr><td>~500 chars — a portal message</td><td class="phi">0.03</td><td>8</td></tr>
@@ -80,7 +84,7 @@
 
     <div class="note"><b>The claim, in one sentence.</b> On English clinical and case text, measured on a shared corpus with a shared harness, a specialist 11 MB model that runs on-device outperforms the default configuration of the general framework — and the tuned framework&rsquo;s numbers are printed above, next to ours.</div>
   </section>
-</div>
+</main>
 
 <footer><div class="wrap foot-in">
   <div class="brand">phiredact</div>
