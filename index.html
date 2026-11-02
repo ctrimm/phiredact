@@ -52,12 +52,16 @@
     <div class="t-head"><h3>Table 1 — Against the incumbent</h3><div class="sc">Head-to-head · shared corpus · same harness</div></div>
     <div class="table-scroll" tabindex="0" role="region" aria-label="Table 1, phiredact versus Microsoft Presidio — scroll horizontally for all columns">
     <table class="ptable num">
+      <thead>
       <tr><th>Measure</th><th>phiredact</th><th>Microsoft Presidio</th><th>Conditions</th></tr>
+      </thead>
+      <tbody>
       <tr><td>Clinical strict F1</td><td class="phi">0.948</td><td>0.466</td><td class="cond">Presidio default configuration</td></tr>
       <tr><td>Clinical strict F1, tuned</td><td class="phi">0.948</td><td>0.774</td><td class="cond">De-identifier model + threshold tuning, ~573 ms/note</td></tr>
       <tr><td>Latency, median per note</td><td class="phi">8.4 ms</td><td>37.8 ms</td><td class="cond">Small notes, CPU, default configs</td></tr>
       <tr><td>Installed footprint</td><td class="phi">11.3 MB</td><td>~840 MB</td><td class="cond">Model + runtime, default install</td></tr>
       <tr><td>Full-value recall, golden set</td><td class="phi">~0.98</td><td>—</td><td class="cond">164-note golden corpus</td></tr>
+      </tbody>
     </table>
     </div>
     <p class="note-line"><b>Read fairly:</b> Presidio is a general framework — 30+ entity types, many languages, images and structured data. phiredact is a specialist: English clinical and case text, 32 entity types, one job. Where the generalist wins, the full comparison says so; it is published with the harness.</p>
@@ -66,11 +70,15 @@
       <div>
         <div class="t-head"><h3>Table 2 — Cost by document length</h3><div class="sc">Median ms / document</div></div>
         <table class="ptable num">
+          <thead>
           <tr><th>Length</th><th>Rules + merge</th><th>+ Neural</th></tr>
+          </thead>
+          <tbody>
           <tr><td>~500 chars — a portal message</td><td class="phi">0.03</td><td>8</td></tr>
           <tr><td>~2,000 — an encounter note</td><td class="phi">0.13</td><td>39–48</td></tr>
           <tr><td>~10,000 — a dictation transcript</td><td class="phi">0.64</td><td>224–241</td></tr>
           <tr><td>~50,000 — a record bundle</td><td class="phi">3.5</td><td>~1,390</td></tr>
+          </tbody>
         </table>
         <p class="note-line">Rules + merge shown for Rust; neural is the Python/Rust range. Steady state at length: ~24–28 ms per 1,000 characters. Batch ceiling, rules alone: ~97,000 small documents per second.</p>
       </div>

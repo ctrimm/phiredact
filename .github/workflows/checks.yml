@@ -1,0 +1,32 @@
+name: checks
+
+# Regression gates for the static site: horizontal overflow, axe-core
+# WCAG 2.1 A/AA, HTML validity, CSS lint. Runs only when a PR touches
+# files that can change how a page renders or reads.
+on:
+  pull_request:
+    paths:
+      - "*.html"
+      - "**/*.html"
+      - "*.css"
+      - "**/*.css"
+      - "scripts/**"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/checks.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run check
