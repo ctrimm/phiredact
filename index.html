@@ -7,6 +7,26 @@
 <meta name="description" content="phiredact redacts PII and PHI on the device it lives on: an 11 MB on-device model, a review-first workflow, and SDKs, a Mac app and a browser extension. Nothing is uploaded, ever.">
 <link rel="stylesheet" href="assets/style.css">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<!-- PostHog analytics, privacy-hardened: session recording disabled, Do Not Track respected,
+     identified-only person profiles. Capturing starts opted out; it begins only if a
+     visitor allows analytics in the consent banner. -->
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getPersonProperties getSurveyInteractionId registerForPlugin".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_nwznU63jZGLA4s2sDrxC5bgScsBkPJqc26VL6tQxZ7S6', {
+    api_host: 'https://us.i.posthog.com',
+    defaults: '2025-05-24',
+    disable_session_recording: true,
+    opt_out_capturing_by_default: true,
+    persistence: 'memory',
+    autocapture: true,
+    capture_pageview: true,
+    capture_pageleave: true,
+    respect_dnt: true,
+    person_profiles: 'identified_only'
+});
+</script>
+<script src="assets/analytics.js" defer></script>
+<script src="assets/consent.js" defer></script>
 </head>
 <body>
 
@@ -14,7 +34,7 @@
   <a class="brand" href="./">phi<i>redact</i></a>
   <div class="nav-links">
     <a href="./" class="here">The model</a><a href="mac/">Documents</a><a href="benchmarks/">Benchmarks</a><a href="demo/">Demo</a>
-    <a class="gh" href="https://github.com/ctrimm/phi-redact-sdk">GitHub &#8599;</a>
+    <a class="gh" href="https://github.com/ctrimm/phi-redact-sdk" data-ph-capture="outbound_link_clicked" data-ph-props='{"target":"github_sdk"}'>GitHub &#8599;</a>
   </div>
 </div></nav>
 
@@ -111,12 +131,12 @@
         <div class="found">
           <span class="f"><b>11</b> entities</span><span class="f">NAME &times;3</span><span class="f">DATE &times;2</span><span class="f">ADDRESS</span><span class="f">PHONE</span><span class="f">SSN</span><span class="f">MRN</span><span class="f">MEMBER ID</span>
         </div>
-        <a class="open-demo" href="demo/">Open the full demo &#8594;</a>
+        <a class="open-demo" href="demo/" data-ph-capture="outbound_link_clicked" data-ph-props='{"target":"demo_page"}'>Open the full demo &#8594;</a>
       </div>
     </div>
     <div class="caption">
       <span class="fig">FIG. 2</span>
-      <span>The same model, shown on a sample note. The 11 MB model downloads once and the redaction happens on your machine, in this tab — the text above was never typed into a server, and yours will not be either. <a href="demo/">Try it on your own words.</a></span>
+      <span>The same model, shown on a sample note. The 11 MB model downloads once and the redaction happens on your machine, in this tab — the text above was never typed into a server, and yours will not be either. <a href="demo/" data-ph-capture="outbound_link_clicked" data-ph-props='{"target":"demo_page"}'>Try it on your own words.</a></span>
     </div>
   </section>
 
@@ -124,7 +144,7 @@
     <div class="sec-title"><h2>The whole instrument</h2><div class="rule-line"></div><div class="tag">Three surfaces, one engine</div></div>
     <div class="toc">
       <div class="row"><div class="no">01</div><h3>Mac application</h3><p>Right-click a PDF or image and redact it: Vision OCR reads the page, face detection finds the portraits, the model finds the text, you review the boxes, the file is rewritten clean.</p><a class="go" href="mac/">For macOS &#8594;</a></div>
-      <div class="row"><div class="no">02</div><h3>Software development kits</h3><p>Python, TypeScript, Rust and Swift libraries for pipelines, log scrubbing and LLM prompt hygiene. Four implementations, byte-identical output, verified by digest on every release.</p><a class="go" href="https://github.com/ctrimm/phi-redact-sdk">For developers &#8599;</a></div>
+      <div class="row"><div class="no">02</div><h3>Software development kits</h3><p>Python, TypeScript, Rust and Swift libraries for pipelines, log scrubbing and LLM prompt hygiene. Four implementations, byte-identical output, verified by digest on every release.</p><a class="go" href="https://github.com/ctrimm/phi-redact-sdk" data-ph-capture="outbound_link_clicked" data-ph-props='{"target":"github_sdk"}'>For developers &#8599;</a></div>
       <div class="row"><div class="no">03</div><h3>Chrome extension</h3><p>Redact a page, a paste or a file before it goes anywhere. Borderline findings wait in a review bucket rather than being silently kept or silently removed.</p><a class="go" href="extension/">For the browser &#8594;</a></div>
     </div>
 
@@ -135,7 +155,8 @@
 <footer><div class="wrap foot-in">
   <div class="brand">phiredact</div>
   <div class="honest">phi-redact is a detection tool that assists de-identification. It is not a certification of HIPAA compliance, and no output should be treated as expert-certified de-identified data.</div>
-  <div>Open source — <a href="https://github.com/ctrimm/phi-redact-sdk">github.com/ctrimm/phi-redact-sdk</a></div>
+  <div>Open source — <a href="https://github.com/ctrimm/phi-redact-sdk" data-ph-capture="outbound_link_clicked" data-ph-props='{"target":"github_sdk"}'>github.com/ctrimm/phi-redact-sdk</a>
+    <div class="foot-legal"><a href="privacy/">Privacy</a><a href="terms/">Terms</a><button type="button" data-consent-settings>Cookie settings</button></div></div>
 </div></footer>
 
 </body>

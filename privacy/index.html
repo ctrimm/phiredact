@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>phiredact — Privacy</title>
+<meta name="description" content="What this site collects, what it never collects, and the two storage entries it uses. Analytics run only after you allow them; session recording is off; nothing from the demo is ever captured.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<!-- PostHog analytics, privacy-hardened: session recording disabled, Do Not Track respected,
+     identified-only person profiles. Capturing starts opted out; it begins only if a
+     visitor allows analytics in the consent banner. -->
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getPersonProperties getSurveyInteractionId registerForPlugin".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_nwznU63jZGLA4s2sDrxC5bgScsBkPJqc26VL6tQxZ7S6', {
+    api_host: 'https://us.i.posthog.com',
+    defaults: '2025-05-24',
+    disable_session_recording: true,
+    opt_out_capturing_by_default: true,
+    persistence: 'memory',
+    autocapture: true,
+    capture_pageview: true,
+    capture_pageleave: true,
+    respect_dnt: true,
+    person_profiles: 'identified_only'
+});
+</script>
+<script src="../assets/analytics.js" defer></script>
+<script src="../assets/consent.js" defer></script>
+</head>
+<body>
+
+<nav><div class="wrap nav-in">
+  <a class="brand" href="../">phi<i>redact</i></a>
+  <div class="nav-links">
+    <a href="../">The model</a><a href="../mac/">Documents</a><a href="../benchmarks/">Benchmarks</a><a href="../demo/">Demo</a>
+    <a class="gh" href="https://github.com/ctrimm/phi-redact-sdk" data-ph-capture="outbound_link_clicked" data-ph-props='{"target":"github_sdk"}'>GitHub &#8599;</a>
+  </div>
+</div></nav>
+
+<main class="wrap">
+  <div class="hero">
+    <div class="kicker">Privacy</div>
+    <h1 style="font-size:56px">Very little, and only<br>with your permission.</h1>
+    <p class="lede">This site describes a tool whose whole purpose is keeping sensitive text off other people&rsquo;s servers. Its own analytics are held to the same standard: <strong>nothing is measured until you allow it</strong>, and everything that is measured fits on this page.</p>
+  </div>
+
+  <section>
+    <div class="sec-title"><h2>Collected</h2><div class="rule-line"></div><div class="tag">Only after you allow analytics</div></div>
+    <p class="sec-sub">Analytics are provided by PostHog, which processes this data on our behalf. The library starts switched off; it begins collecting only when you choose &ldquo;Allow analytics&rdquo; in the banner.</p>
+    <div class="toc">
+      <div class="row"><div class="no">01</div><h3>Pageviews &amp; clicks</h3><p>Which pages you visit, which links and buttons you use, and when you leave a page. That is how we learn whether anyone reads the benchmarks.</p><span class="go">PostHog</span></div>
+      <div class="row"><div class="no">02</div><h3>Where you came from</h3><p>The site that referred you, and any UTM campaign tags on the link you followed to get here.</p><span class="go">PostHog</span></div>
+      <div class="row"><div class="no">03</div><h3>Browser &amp; device</h3><p>Browser, operating system, screen size and language — the standard properties the analytics library attaches to each event.</p><span class="go">PostHog</span></div>
+      <div class="row"><div class="no">04</div><h3>IP address, anonymized</h3><p>Your IP address reaches PostHog with each event, and our project is configured to anonymize it. We do not store or use your raw IP address.</p><span class="go">Anonymized</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title"><h2>Never collected</h2><div class="rule-line"></div><div class="tag">By design, not by promise</div></div>
+    <div class="toc">
+      <div class="row"><div class="no">—</div><h3>No session recording</h3><p>Session replay is disabled in the snippet on every page. Nobody can watch your visit back.</p><span class="go">Off</span></div>
+      <div class="row"><div class="no">—</div><h3>Nothing from the demo</h3><p>Automatic capture is switched off on the demo page and the editor is marked no-capture. What you type or paste there stays in your browser — it is never sent to PostHog, or anywhere.</p><span class="go">Never sent</span></div>
+      <div class="row"><div class="no">—</div><h3>No advertising, no cross-site tracking</h3><p>There are no ad networks, no social-media pixels and no third-party trackers on this site. The analytics identifier is first-party to this site and is not used to follow you across the web.</p><span class="go">None</span></div>
+      <div class="row"><div class="no">—</div><h3>No sale or sharing</h3><p>We do not sell or share your personal information. That is the California wording, and it is simply true: analytics data goes to PostHog, our service provider, and nowhere else.</p><span class="go">Not sold</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title"><h2>Cookies &amp; storage</h2><div class="rule-line"></div><div class="tag">Two entries, one of them optional</div></div>
+    <div class="t-head"><h3>The complete list</h3><div class="sc">First-party only</div></div>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Cookies and storage used by this site — scroll horizontally for all columns">
+    <table class="ptable text">
+      <thead><tr><th>Name</th><th>Purpose</th><th>Set when</th></tr></thead>
+      <tbody>
+      <tr><td>phiredact.consent</td><td>Remembers your analytics choice, so you are not asked again on every page. Held in local storage. Strictly necessary — it is how the consent mechanism itself works.</td><td>When you choose in the banner</td></tr>
+      <tr><td>ph_&#8230;_posthog</td><td>PostHog&rsquo;s anonymous visitor identifier and session bookkeeping, held as a cookie and in local storage — plus a small companion marker (<span style="font-family:var(--mono);font-size:13.5px">__ph_opt_in_out_&#8230;</span>) recording the choice itself. Until you allow analytics, PostHog runs in memory only and stores nothing.</td><td>Marker: when you choose. Identifier: only after &ldquo;Allow analytics&rdquo;</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note-line">If you decline, the PostHog identifier is never stored — it lives in the page&rsquo;s memory for the visit and is forgotten when you leave. You can change your mind at any time — <b>Cookie settings</b> in the footer re-opens the banner, and withdrawing consent is as final as granting it.</p>
+  </section>
+
+  <section>
+    <div class="sec-title"><h2>Hosting &amp; signals</h2><div class="rule-line"></div><div class="tag">The parts around the edges</div></div>
+    <div class="toc">
+      <div class="row"><div class="no">—</div><h3>Served by GitHub Pages</h3><p>This site is static files hosted on GitHub Pages. Like any web host, GitHub may log visitor IP addresses in its server logs; that logging is GitHub&rsquo;s, it is outside our control, and it is covered by <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" style="border-bottom:1px solid var(--red)">GitHub&rsquo;s privacy statement</a>.</p><span class="go">Hosting</span></div>
+      <div class="row"><div class="no">—</div><h3>Signals honored</h3><p>If your browser sends <b>Do Not Track</b>, the analytics library respects it. If it sends <b>Global Privacy Control</b>, this site treats that as a &ldquo;no&rdquo;: capturing stays off and no banner is shown.</p><span class="go">DNT · GPC</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title"><h2>Your rights</h2><div class="rule-line"></div><div class="tag">And how to use them</div></div>
+    <div class="toc">
+      <div class="row"><div class="no">—</div><h3>In Europe</h3><p>Under the GDPR you may ask what we hold about you, ask for it to be erased, object to its use, and withdraw consent at any time. Because the analytics are anonymous and consent-gated, there is usually nothing identifiable to retrieve — but the rights are yours, and the contact below works.</p><span class="go">GDPR</span></div>
+      <div class="row"><div class="no">—</div><h3>In California</h3><p>Under the CCPA/CPRA you have the right to know what personal information is collected, to have it deleted, and to opt out of any sale or sharing. We do not sell or share personal information, so there is nothing to opt out of beyond declining analytics — which the banner and the footer both let you do.</p><span class="go">CCPA / CPRA</span></div>
+      <div class="row"><div class="no">—</div><h3>Contact</h3><p>Privacy questions and requests — access, erasure, anything else — go through this site&rsquo;s repository. Open an issue and it will be answered there.</p><a class="go" href="https://github.com/ctrimm/phiredact/issues">GitHub issues &#8599;</a></div>
+    </div>
+
+    <div class="status-line">
+      <span class="st"><b>Last updated:</b> November 2, 2026</span>
+      <span class="st">If this page changes materially, the date changes with it.</span>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap foot-in">
+  <div class="brand">phiredact</div>
+  <div class="honest">phi-redact is a detection tool that assists de-identification. It is not a certification of HIPAA compliance, and no output should be treated as expert-certified de-identified data.</div>
+  <div>Open source — <a href="https://github.com/ctrimm/phi-redact-sdk" data-ph-capture="outbound_link_clicked" data-ph-props='{"target":"github_sdk"}'>github.com/ctrimm/phi-redact-sdk</a>
+    <div class="foot-legal"><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a><button type="button" data-consent-settings>Cookie settings</button></div></div>
+</div></footer>
+
+</body>
+</html>

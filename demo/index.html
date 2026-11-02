@@ -7,6 +7,27 @@
 <meta name="description" content="Try phiredact on your own words. The on-device redaction demo finds names, dates and ID numbers in your text — and nothing you paste is sent anywhere.">
 <link rel="stylesheet" href="../assets/style.css">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<!-- PostHog analytics, privacy-hardened: session recording disabled, Do Not Track respected,
+     identified-only person profiles. Demo page: autocapture off and editor panes marked
+     ph-no-capture so nothing a visitor pastes can be captured. Capturing starts
+     opted out; it begins only if a visitor allows analytics in the consent banner. -->
+<script>
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getPersonProperties getSurveyInteractionId registerForPlugin".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+posthog.init('phc_nwznU63jZGLA4s2sDrxC5bgScsBkPJqc26VL6tQxZ7S6', {
+    api_host: 'https://us.i.posthog.com',
+    defaults: '2025-05-24',
+    disable_session_recording: true,
+    opt_out_capturing_by_default: true,
+    persistence: 'memory',
+    autocapture: false,
+    capture_pageview: true,
+    capture_pageleave: true,
+    respect_dnt: true,
+    person_profiles: 'identified_only'
+});
+</script>
+<script src="../assets/analytics.js" defer></script>
+<script src="../assets/consent.js" defer></script>
 </head>
 <body>
 
@@ -14,7 +35,7 @@
   <a class="brand" href="../">phi<i>redact</i></a>
   <div class="nav-links">
     <a href="../">The model</a><a href="../mac/">Documents</a><a href="../benchmarks/">Benchmarks</a><a href="./" class="here">Demo</a>
-    <a class="gh" href="https://github.com/ctrimm/phi-redact-sdk">GitHub &#8599;</a>
+    <a class="gh" href="https://github.com/ctrimm/phi-redact-sdk" data-ph-capture="outbound_link_clicked" data-ph-props='{"target":"github_sdk"}'>GitHub &#8599;</a>
   </div>
 </div></nav>
 
@@ -23,22 +44,22 @@
     <div class="kicker">The demo</div>
     <h1 style="font-size:54px">Try it on your own words.</h1>
     <p class="lede">Paste a note, a case summary, a page of logs. The model below is the same 11 MB build that ships in the SDKs — and when it runs here, in this tab, <strong>nothing you paste is sent anywhere</strong>.</p>
-    <p class="preview-note"><b>Preview:</b> the in-browser model is being wired up. Until then, the working demo runs at <a href="https://corytrimm.com/phi-redact">corytrimm.com/phi-redact</a>.</p>
+    <p class="preview-note"><b>Preview:</b> the in-browser model is being wired up. Until then, the working demo runs at <a href="https://corytrimm.com/phi-redact" data-ph-capture="outbound_link_clicked" data-ph-props='{"target":"live_demo"}'>corytrimm.com/phi-redact</a>.</p>
 
-    <div class="chips">
-      <button type="button" class="chip on">Discharge note</button>
-      <button type="button" class="chip">Case note</button>
-      <button type="button" class="chip">Log lines</button>
+    <div class="chips ph-no-capture">
+      <button type="button" data-ph-capture="demo_preset_chosen" data-ph-props='{"preset":"discharge"}' class="chip on">Discharge note</button>
+      <button type="button" data-ph-capture="demo_preset_chosen" data-ph-props='{"preset":"case_note"}' class="chip">Case note</button>
+      <button type="button" data-ph-capture="demo_preset_chosen" data-ph-props='{"preset":"log_lines"}' class="chip">Log lines</button>
     </div>
 
     <div class="demo-panel" style="margin-top:22px">
       <div class="demo-head"><span class="t">Sample — discharge note</span><span class="live">Sample — recorded output</span></div>
       <div class="panes">
-        <div class="pane left">
+        <div class="pane left ph-no-capture">
           <label class="lab" for="demo-input">Your text</label>
-          <textarea class="ta" id="demo-input" rows="9" spellcheck="false">Patient: Daniel R. Okafor, DOB 11/02/1958, MRN 07-441-2093. Admitted 09/18/2026 with chest pain. Emergency contact: his wife Elena Okafor, (614) 555-0182. Home: 418 Walnut Creek Dr, Columbus, OH 43215. SSN on file: 301-42-7786. Follow up with Dr. Priya Nair in two weeks. Member ID: UHC-88-204-5519.</textarea>
+          <textarea class="ta ph-no-capture" id="demo-input" rows="9" spellcheck="false">Patient: Daniel R. Okafor, DOB 11/02/1958, MRN 07-441-2093. Admitted 09/18/2026 with chest pain. Emergency contact: his wife Elena Okafor, (614) 555-0182. Home: 418 Walnut Creek Dr, Columbus, OH 43215. SSN on file: 301-42-7786. Follow up with Dr. Priya Nair in two weeks. Member ID: UHC-88-204-5519.</textarea>
         </div>
-        <div class="pane right">
+        <div class="pane right ph-no-capture">
           <div class="lab">Redacted — 1.6 ms</div>
           Patient: <span class="bar">Daniel R. Okafor</span>, DOB <span class="bar">11/02/1958</span>, MRN <span class="bar">07-441-2093</span>. Admitted <span class="bar">09/18/2026</span> with chest pain. Emergency contact: his wife <span class="bar">Elena Okafor</span>, <span class="bar">(614) 555-0182</span>. Home: <span class="bar">418 Walnut Creek Dr, Columbus, OH 43215</span>. SSN on file: <span class="bar">301-42-7786</span>. Follow up with Dr. <span class="bar">Priya Nair</span> in two weeks. Member ID: <span class="bar">UHC-88-204-5519</span>.
         </div>
@@ -64,7 +85,7 @@
   <section>
     <div class="sec-title"><h2>Take it out of the browser</h2><div class="rule-line"></div><div class="tag">Same engine, three more places</div></div>
     <div class="toc">
-      <div class="row"><div class="no">01</div><h3>Software development kits</h3><p>For pipelines, batch jobs and log scrubbing. Python, TypeScript, Rust and Swift — install once, redact offline forever.</p><a class="go" href="https://github.com/ctrimm/phi-redact-sdk">Get the SDKs &#8599;</a></div>
+      <div class="row"><div class="no">01</div><h3>Software development kits</h3><p>For pipelines, batch jobs and log scrubbing. Python, TypeScript, Rust and Swift — install once, redact offline forever.</p><a class="go" href="https://github.com/ctrimm/phi-redact-sdk" data-ph-capture="outbound_link_clicked" data-ph-props='{"target":"github_sdk"}'>Get the SDKs &#8599;</a></div>
       <div class="row"><div class="no">02</div><h3>Mac application</h3><p>The same engine for PDFs and images, with OCR, face detection and a review screen before anything is burned in.</p><a class="go" href="../mac/">For macOS &#8594;</a></div>
       <div class="row"><div class="no">03</div><h3>Chrome extension</h3><p>This demo, attached to every page and paste in your browser — with a review bucket for the borderline calls.</p><a class="go" href="../extension/">For the browser &#8594;</a></div>
     </div>
@@ -74,7 +95,8 @@
 <footer><div class="wrap foot-in">
   <div class="brand">phiredact</div>
   <div class="honest">phi-redact is a detection tool that assists de-identification. It is not a certification of HIPAA compliance, and no output should be treated as expert-certified de-identified data.</div>
-  <div>Open source — <a href="https://github.com/ctrimm/phi-redact-sdk">github.com/ctrimm/phi-redact-sdk</a></div>
+  <div>Open source — <a href="https://github.com/ctrimm/phi-redact-sdk" data-ph-capture="outbound_link_clicked" data-ph-props='{"target":"github_sdk"}'>github.com/ctrimm/phi-redact-sdk</a>
+    <div class="foot-legal"><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a><button type="button" data-consent-settings>Cookie settings</button></div></div>
 </div></footer>
 
 </body>
