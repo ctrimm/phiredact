@@ -130,7 +130,16 @@ table.ptable{width:100%;border-collapse:collapse}
 .chips{display:flex;gap:10px;margin-top:34px;flex-wrap:wrap}
 .chip{font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;border:1px solid var(--line2);background:var(--paper);padding:9px 16px;color:var(--soft);cursor:pointer}
 .chip.on{border-color:var(--ink);color:var(--ink);box-shadow:inset 0 -2px 0 var(--red)}
-textarea.ta{width:100%;border:none;background:transparent;resize:none;font:inherit;color:inherit;line-height:inherit;outline:none}
+textarea.ta{width:100%;border:none;background:transparent;resize:none;font:inherit;color:inherit;line-height:inherit;outline:none;padding:0;position:relative;z-index:1;display:block}
+
+/* live demo: entity highlights behind the textarea (the textarea keeps
+   a transparent background; the mirror renders the same text with the
+   detected spans tinted, scrolled in lockstep by demo.js) */
+.ta-wrap{position:relative}
+.ta-backdrop{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.ta-mirror{white-space:pre-wrap;overflow-wrap:break-word;color:transparent}
+.ta-mirror .mark{background:rgba(156,43,27,.16);border-radius:2px}
+.pane .out{white-space:pre-wrap;overflow-wrap:break-word}
 
 /* assurance / methods blocks */
 .assure{margin-top:48px;border-top:1px solid var(--ink);display:grid;grid-template-columns:repeat(3,1fr)}
@@ -173,9 +182,6 @@ footer{margin-top:70px;border-top:2px solid var(--ink);padding:26px 0 38px}
 .bucket-item .acts span.rm{border-color:var(--red);color:var(--red)}
 
 /* Launch addition: preview notice on /demo */
-.preview-note{margin-top:22px;max-width:720px;font-size:15px;line-height:1.6;color:var(--soft);border:1px solid var(--line);border-left:3px solid var(--red);padding:14px 18px;background:#fffdf8}
-.preview-note b{color:var(--ink)}
-.preview-note a{color:var(--red);border-bottom:1px solid var(--red)}
 
 /* focus visibility (WCAG 2.4.7) */
 :focus-visible{outline:2px solid var(--red);outline-offset:2px}
