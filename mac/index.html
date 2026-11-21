@@ -27,6 +27,20 @@ posthog.init('phc_nwznU63jZGLA4s2sDrxC5bgScsBkPJqc26VL6tQxZ7S6', {
 </script>
 <script src="../assets/analytics.js" defer></script>
 <script src="../assets/consent.js" defer></script>
+<style>
+.tab-input{position:absolute;left:-9999px}
+.tab-nav{display:flex;border-bottom:2px solid var(--ink);gap:0;margin-top:36px}
+.tab-label{font-family:var(--mono);font-size:12px;letter-spacing:.09em;text-transform:uppercase;padding:10px 18px;color:var(--soft);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;user-select:none}
+.tab-label:hover{color:var(--ink)}
+.tab-pane{display:none}
+.tab-shot{background:var(--paper);border:1px solid var(--line2);border-top:none;overflow:hidden;box-shadow:0 18px 44px rgba(27,23,18,.10)}
+.tab-shot img{display:block;width:100%;height:380px;object-fit:cover;object-position:center top}
+.tab-shot.restore img{-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 8%);mask-image:linear-gradient(to right,transparent 0%,#000 8%)}
+.tab-caption{padding:14px 6px 4px;font-size:14px;color:var(--soft);line-height:1.55}
+.tab-caption code{font-family:var(--mono);font-size:12.5px;background:var(--paper);border:1px solid var(--line2);padding:1px 5px}
+#t1:checked~.tab-nav .l1,#t2:checked~.tab-nav .l2,#t3:checked~.tab-nav .l3,#t4:checked~.tab-nav .l4{color:var(--ink);border-bottom-color:var(--red)}
+#t1:checked~.tab-panes .p1,#t2:checked~.tab-panes .p2,#t3:checked~.tab-panes .p3,#t4:checked~.tab-panes .p4{display:block}
+</style>
 </head>
 <body>
 
@@ -63,6 +77,39 @@ posthog.init('phc_nwznU63jZGLA4s2sDrxC5bgScsBkPJqc26VL6tQxZ7S6', {
       </div>
     </div>
   </div>
+
+  <section>
+    <div class="sec-title"><h2>The application</h2><div class="rule-line"></div><div class="tag">Four tabs</div></div>
+
+    <input type="radio" name="app-tab" id="t1" class="tab-input" checked>
+    <input type="radio" name="app-tab" id="t2" class="tab-input">
+    <input type="radio" name="app-tab" id="t3" class="tab-input">
+    <input type="radio" name="app-tab" id="t4" class="tab-input">
+    <div class="tab-nav">
+      <label for="t1" class="tab-label l1">Redact</label>
+      <label for="t2" class="tab-label l2">Documents</label>
+      <label for="t3" class="tab-label l3">Restore</label>
+      <label for="t4" class="tab-label l4">History</label>
+    </div>
+    <div class="tab-panes">
+      <div class="tab-pane p1">
+        <div class="tab-shot"><img src="../assets/screenshots/tab-redact.png" alt="Redact tab — paste, type, or drop a file; names, dates and IDs are proposed" width="936" height="1238"></div>
+        <p class="tab-caption">Paste text, type, or drop a file. ⌘V redacts the clipboard instantly; ⌃⌘R works from any app. The original is untouched until you say so.</p>
+      </div>
+      <div class="tab-pane p2">
+        <div class="tab-shot"><img src="../assets/screenshots/tab-documents.png" alt="Documents tab — open a PDF or image for review" width="934" height="1256"></div>
+        <p class="tab-caption">Open a PDF or image. PHI Redact proposes boxes around what it finds — approve, reject, or draw a box the model missed, before anything is burned in.</p>
+      </div>
+      <div class="tab-pane p3">
+        <div class="tab-shot restore"><img src="../assets/screenshots/tab-restore.png" alt="Restore tab — paste an AI reply to swap redaction tokens back for the real values" width="980" height="1250"></div>
+        <p class="tab-caption">Paste an AI reply back in. Tokens like <code>[NAME_PATIENT_1]</code> are swapped for the real values from the redaction, so you can read the response without decoding it yourself.</p>
+      </div>
+      <div class="tab-pane p4">
+        <div class="tab-shot"><img src="../assets/screenshots/tab-history.png" alt="History tab — recent redaction sessions with entity counts and timestamps" width="960" height="1262"></div>
+        <p class="tab-caption">Every session is logged locally. Names, IDs, organisations and contacts counted per entry — tap any row to restore its mapping.</p>
+      </div>
+    </div>
+  </section>
 
   <section>
     <div class="sec-title"><h2>How it works</h2><div class="rule-line"></div><div class="tag">Four steps, one of them yours</div></div>
