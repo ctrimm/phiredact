@@ -29,8 +29,9 @@ posthog.init('phc_nwznU63jZGLA4s2sDrxC5bgScsBkPJqc26VL6tQxZ7S6', {
 <script src="../assets/consent.js" defer></script>
 <style>
 .tab-input{position:absolute;left:-9999px}
-.tab-nav{display:flex;border-bottom:2px solid var(--ink);gap:0;margin-top:36px}
-.tab-label{font-family:var(--mono);font-size:12px;letter-spacing:.09em;text-transform:uppercase;padding:10px 18px;color:var(--soft);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;user-select:none}
+.tab-nav{display:flex;border-bottom:2px solid var(--ink);gap:0;margin-top:36px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-nav::-webkit-scrollbar{display:none}
+.tab-label{font-family:var(--mono);font-size:12px;letter-spacing:.09em;text-transform:uppercase;padding:10px 18px;color:var(--soft);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;user-select:none;white-space:nowrap;flex-shrink:0}
 .tab-label:hover{color:var(--ink)}
 .tab-pane{display:none}
 .tab-shot{background:var(--paper);border:1px solid var(--line2);border-top:none;overflow:hidden;box-shadow:0 18px 44px rgba(27,23,18,.10)}
