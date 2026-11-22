@@ -1,8 +1,9 @@
 name: checks
 
 # Regression gates for the static site: horizontal overflow, axe-core
-# WCAG 2.1 A/AA, HTML validity, CSS lint. Runs only when a PR touches
-# files that can change how a page renders or reads.
+# WCAG 2.1 A/AA, mobile nav behaviour, link integrity, HTML validity,
+# CSS lint. Runs only when a PR touches files that can change how a
+# page renders, reads or navigates.
 on:
   pull_request:
     paths:
@@ -10,6 +11,7 @@ on:
       - "**/*.html"
       - "*.css"
       - "**/*.css"
+      - "assets/**"
       - "scripts/**"
       - "package.json"
       - "package-lock.json"
