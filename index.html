@@ -27,15 +27,18 @@ posthog.init('phc_nwznU63jZGLA4s2sDrxC5bgScsBkPJqc26VL6tQxZ7S6', {
 </script>
 <script src="assets/analytics.js" defer></script>
 <script src="assets/consent.js" defer></script>
+<script src="assets/nav.js" defer></script>
 </head>
 <body>
 
 <nav><div class="wrap nav-in">
   <a class="brand" href="./">phi<i>redact</i></a>
-  <div class="nav-links">
+  <div class="nav-links" id="nav-links">
     <a href="./" class="here">The model</a><a href="mac/">Documents</a><a href="benchmarks/">Benchmarks</a><a href="demo/">Demo</a>
     <a class="gh" href="https://github.com/ctrimm/phi-redact-sdk" data-ph-capture="outbound_link_clicked" data-ph-props='{"target":"github_sdk"}'>GitHub &#8599;</a>
   </div>
+  <a class="btn solid small nav-dl" href="https://github.com/ctrimm/phiredact/releases/download/v0.1.0/PHI-Redact.dmg" data-ph-capture="download_clicked" data-ph-props='{"target":"dmg_v0.1.0","source":"header"}'><svg class="apple-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>Download <span class="nav-dl-opt">for Mac </span>&#8595;</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
 
 <main class="wrap">
@@ -48,6 +51,10 @@ posthog.init('phc_nwznU63jZGLA4s2sDrxC5bgScsBkPJqc26VL6tQxZ7S6', {
       <span><b>11 MB</b> model, runs on-device</span>
       <span><b>100%</b> of boxes reviewed by a person first</span>
       <span>Open source</span>
+    </div>
+    <div class="hero-actions">
+      <a class="btn solid" href="https://github.com/ctrimm/phiredact/releases/download/v0.1.0/PHI-Redact.dmg" data-ph-capture="download_clicked" data-ph-props='{"target":"dmg_v0.1.0","source":"home_hero"}'>Download for Mac &#8595;</a>
+      <span class="req">macOS 13 or later &middot; ~23&thinsp;MB &middot; v0.1.0 &middot; <a href="mac/">About the Mac app &#8594;</a></span>
     </div>
 
     <div class="doc-shot">
