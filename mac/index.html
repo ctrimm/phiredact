@@ -27,6 +27,7 @@ posthog.init('phc_nwznU63jZGLA4s2sDrxC5bgScsBkPJqc26VL6tQxZ7S6', {
 </script>
 <script src="../assets/analytics.js" defer></script>
 <script src="../assets/consent.js" defer></script>
+<script src="../assets/nav.js" defer></script>
 <style>
 .tab-input{position:absolute;left:-9999px}
 .tab-menu-btn{display:none}
@@ -57,10 +58,12 @@ posthog.init('phc_nwznU63jZGLA4s2sDrxC5bgScsBkPJqc26VL6tQxZ7S6', {
 
 <nav><div class="wrap nav-in">
   <a class="brand" href="../">phi<i>redact</i></a>
-  <div class="nav-links">
+  <div class="nav-links" id="nav-links">
     <a href="../">The model</a><a href="./" class="here">Documents</a><a href="../benchmarks/">Benchmarks</a><a href="../demo/">Demo</a>
     <a class="gh" href="https://github.com/ctrimm/phi-redact-sdk" data-ph-capture="outbound_link_clicked" data-ph-props='{"target":"github_sdk"}'>GitHub &#8599;</a>
   </div>
+  <a class="btn solid small nav-dl" href="https://github.com/ctrimm/phiredact/releases/download/v0.1.0/PHI-Redact.dmg" data-ph-capture="download_clicked" data-ph-props='{"target":"dmg_v0.1.0","source":"header"}'>Download <span class="nav-dl-opt">for Mac </span>&#8595;</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
 
 <main class="wrap">
@@ -92,10 +95,10 @@ posthog.init('phc_nwznU63jZGLA4s2sDrxC5bgScsBkPJqc26VL6tQxZ7S6', {
   <section>
     <div class="sec-title"><h2>The application</h2><div class="rule-line"></div><div class="tag">Four tabs</div></div>
 
-    <input type="radio" name="app-tab" id="t1" class="tab-input" checked>
-    <input type="radio" name="app-tab" id="t2" class="tab-input">
-    <input type="radio" name="app-tab" id="t3" class="tab-input">
-    <input type="radio" name="app-tab" id="t4" class="tab-input">
+    <input type="radio" name="app-tab" id="t1" class="tab-input" aria-label="Redact tab" checked>
+    <input type="radio" name="app-tab" id="t2" class="tab-input" aria-label="Documents tab">
+    <input type="radio" name="app-tab" id="t3" class="tab-input" aria-label="Restore tab">
+    <input type="radio" name="app-tab" id="t4" class="tab-input" aria-label="History tab">
     <button type="button" class="tab-menu-btn" aria-expanded="false" aria-controls="app-tab-nav"><span class="tab-current">Redact</span><span class="tab-chevron">&#9662;</span></button>
     <div class="tab-nav" id="app-tab-nav">
       <label for="t1" class="tab-label l1">Redact</label>

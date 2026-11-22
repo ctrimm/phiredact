@@ -28,15 +28,18 @@ posthog.init('phc_nwznU63jZGLA4s2sDrxC5bgScsBkPJqc26VL6tQxZ7S6', {
 </script>
 <script src="../assets/analytics.js" defer></script>
 <script src="../assets/consent.js" defer></script>
+<script src="../assets/nav.js" defer></script>
 </head>
 <body>
 
 <nav><div class="wrap nav-in">
   <a class="brand" href="../">phi<i>redact</i></a>
-  <div class="nav-links">
+  <div class="nav-links" id="nav-links">
     <a href="../">The model</a><a href="../mac/">Documents</a><a href="../benchmarks/">Benchmarks</a><a href="./" class="here">Demo</a>
     <a class="gh" href="https://github.com/ctrimm/phi-redact-sdk" data-ph-capture="outbound_link_clicked" data-ph-props='{"target":"github_sdk"}'>GitHub &#8599;</a>
   </div>
+  <a class="btn solid small nav-dl" href="https://github.com/ctrimm/phiredact/releases/download/v0.1.0/PHI-Redact.dmg" data-ph-capture="download_clicked" data-ph-props='{"target":"dmg_v0.1.0","source":"header"}'>Download <span class="nav-dl-opt">for Mac </span>&#8595;</a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
 
 <main class="wrap">
