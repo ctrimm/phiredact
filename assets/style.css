@@ -140,6 +140,8 @@ table.ptable{width:100%;border-collapse:collapse}
 .btn.solid{background:var(--ink);color:var(--bg)}
 .btn.solid:hover{background:var(--red);border-color:var(--red)}
 .btn.small{font-size:13.5px;padding:8px 15px}
+.btn.nav-dl{display:inline-flex;align-items:center;gap:7px}
+.apple-mark{width:13px;height:13px;fill:currentColor;flex:none}
 .hero-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:34px}
 .req{font-family:var(--mono);font-size:12.5px;color:var(--faint);letter-spacing:.03em}
 .req a{color:var(--ink);border-bottom:1px solid var(--red)}
@@ -246,7 +248,9 @@ button.chip{font-family:var(--mono)}
   .nav-in{height:60px;gap:12px}
   .brand{font-size:24px}
   .nav-links{padding:6px 20px 12px}
-  .nav-dl{font-size:12.5px;padding:7px 11px}
+  .nav-dl{font-size:12.5px;padding:7px 9px}
+  .btn.nav-dl{gap:5px}
+  .apple-mark{width:12px;height:12px}
   .hero{padding-top:42px}
   h1{font-size:41px !important;line-height:1.14}
   .lede{font-size:18px;line-height:1.6}
